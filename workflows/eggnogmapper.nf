@@ -48,6 +48,8 @@ include { INPUT_CHECK } from '../subworkflows/local/input_check'
 //
 include { FASTQC                      } from '../modules/nf-core/fastqc/main'
 include { MULTIQC                     } from '../modules/nf-core/multiqc/main'
+include { PRODIGAL                    } from '../modules/nf-core/prodigal/main'
+include { EGGNOGMAPPER                } from '../modules/nf-core/eggnogmapper/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
 
 /*
