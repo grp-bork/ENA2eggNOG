@@ -53,6 +53,22 @@ include { PRODIGAL                    } from '../modules/nf-core/prodigal/main'
 // include { EGGNOGMAPPER as EMAPPER     } from '../modules/nf-core/eggnogmapper/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
 
+////////////////////////////////////////////////////
+/* --  Create channel for reference databases  -- */
+////////////////////////////////////////////////////
+
+if (params.skip_download) {
+    ch_db = file("$params.eggnog_data_dir/eggnog.db", checkIfExists: true)
+    ch_proteins_dmnd = file("$params.eggnog_data_dir/eggnog_proteins.dmnd", checkIfExists: true)
+    ch_taxa_db = file("$params.eggnog_data_dir/eggnog.taxa.db", checkIfExists: true)
+    ch_taxa_db_pkl = file("$params.eggnog_data_dir/eggnog.taxa.db.traverse.pkl", checkIfExists: true)
+} else {
+    ch_db = Channel.empty()
+    ch_proteins_dmnd = Channel.empty()
+    ch_taxa_db = Channel.empty()
+    ch_taxa_db_pkl = Channel.empty()
+}
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
@@ -91,7 +107,11 @@ workflow EGGNOGMAPPER {
     //
     EMAPPER(
         PRODIGAL.out.amino_acid_fasta,
-        params.eggnog_data_dir
+        params.eggnog_data_dir,
+        ch_db,
+        ch_proteins_dmnd,
+        ch_taxa_db,
+        ch_taxa_db_pkl
     )
     ch_versions = ch_versions.mix(EMAPPER.out.versions)
 
