@@ -32,4 +32,17 @@ process EMAPPER_DOWNLOADDB {
         eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
     END_VERSIONS
     """
+
+    stub:
+    """
+    touch eggnog.db
+    touch eggnog_proteins.dmnd
+    touch eggnog.taxa.db
+    touch eggnog.taxa.db.traverse.pkl
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
+    END_VERSIONS
+    """
 }
