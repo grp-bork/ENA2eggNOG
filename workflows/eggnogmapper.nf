@@ -66,13 +66,6 @@ workflow EGGNOGMAPPER {
 
     ch_versions = Channel.empty()
 
-    // PARAMETER CHECK
-    if (params.eggnog_data_dir) {
-        ch_eggnog_data_dir = file(params.eggnog_data_dir, checkIfExists: true)
-    } else {
-        ch_eggnog_data_dir = Channel.empty()
-    }
-
     //
     // SUBWORKFLOW: Read in samplesheet, validate and stage input files
     //
@@ -110,9 +103,9 @@ workflow EGGNOGMAPPER {
     // )
     // ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
-    // CUSTOM_DUMPSOFTWAREVERSIONS (
-    //     ch_versions.unique().collectFile(name: 'collated_versions.yml')
-    // )
+    CUSTOM_DUMPSOFTWAREVERSIONS (
+        ch_versions.unique().collectFile(name: 'collated_versions.yml')
+    )
 
     // //
     // // MODULE: MultiQC

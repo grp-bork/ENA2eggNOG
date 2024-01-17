@@ -10,6 +10,10 @@ process EGGNOGMAPPER {
     input:
     tuple val(meta), path(fasta)
     path(eggnog_data_dir)
+    path(db)
+    path(proteins_dmnd)
+    path(taxa_db)
+    path(taxa_db_pkl)
 
     output:
     tuple val(meta), path("*.emapper.annotations")   , emit: annotations
@@ -46,17 +50,17 @@ process EGGNOGMAPPER {
     END_VERSIONS
     """
 
-    // stub:
-    // def args = task.ext.args ?: ''
-    // def prefix = task.ext.prefix ?: "${meta.id}"
-    // """
-    // touch ${prefix}.emapper.annotations
-    // touch ${prefix}.emapper.seed_orthologs
-    // touch ${prefix}.emapper.hits
+    stub:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    touch ${prefix}.emapper.annotations
+    touch ${prefix}.emapper.seed_orthologs
+    touch ${prefix}.emapper.hits
 
-    // cat <<-END_VERSIONS > versions.yml
-    // "${task.process}":
-    //     eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
-    // END_VERSIONS
-    // """
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
+    END_VERSIONS
+    """
 }
