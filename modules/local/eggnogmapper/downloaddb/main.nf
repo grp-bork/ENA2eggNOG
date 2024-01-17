@@ -24,8 +24,8 @@ process EMAPPER_DOWNLOADDB {
     def args = task.ext.args ?: ''
 
     """
-    mkdir -p $eggnog_data_dir
-    download_eggnog_data.py --data_dir $eggnog_data_dir -y $args
+    mkdir -p ${params.eggnog_data_dir}
+    download_eggnog_data.py --data_dir ${eggnog_data_dir} -y ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
