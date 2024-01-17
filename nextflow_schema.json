@@ -14,12 +14,14 @@
                 "eggnog_data_dir": {
                     "type": "string",
                     "default": "/vol/data/databases/eggnog/",
-                    "hidden": true
+                    "hidden": true,
+                    "description": "Path to Eggnog database files"
                 },
                 "skip_download": {
-                    "type": "string",
-                    "default": "true",
-                    "hidden": true
+                    "type": "boolean",
+                    "default": true,
+                    "hidden": true,
+                    "description": "Boolean flag to skip downloading eggnog database files"
                 }
             }
         },
