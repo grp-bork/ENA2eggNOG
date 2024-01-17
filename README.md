@@ -13,7 +13,15 @@
 
 ## Introduction
 
-**nf-core/eggnogmapper** is a bioinformatics pipeline that ...
+**Eggnogmapper** is a bioinformatics pipeline for fast functional annotation of novel sequences. It uses precomputed orthologous groups and phylogenies from the [eggNOG database](http://eggnog5.embl.de) to transfer functional information from fine-grained orthologs only.
+
+Common uses of eggNOG-mapper include the annotation of novel genomes, transcriptomes or even metagenomic gene catalogs.
+
+The use of orthology predictions for functional annotation permits a higher precision than traditional homology searches (i.e. BLAST searches), as it avoids transferring annotations from close paralogs (duplicate genes with a higher chance of being involved in functional divergence).
+
+Benchmarks comparing different eggNOG-mapper options against BLAST and InterProScan can be found [here](https://github.com/jhcepas/emapper-benchmark/blob/master/benchmark_analysis.ipynb).
+
+
 
 <!-- TODO nf-core:
    Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
