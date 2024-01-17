@@ -1,6 +1,6 @@
 process EGGNOGMAPPER {
     tag "$meta.id"
-    label 'process_long'
+    label 'process_high'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -9,9 +9,7 @@ process EGGNOGMAPPER {
 
     input:
     tuple val(meta), path(fasta)
-    path(eggnog_db)
     path(eggnog_data_dir)
-    tuple val(meta2), path(eggnog_diamond_db)
 
     output:
     tuple val(meta), path("*.emapper.annotations")   , emit: annotations
@@ -37,9 +35,7 @@ process EGGNOGMAPPER {
         --cpu ${task.cpus} \\
         -i ${fasta_name} \\
         --data_dir ${eggnog_data_dir} \\
-        -m diamond \\
-        --dmnd_db ${eggnog_diamond_db} \\
-        --database ${eggnog_db} \\
+        -m diamond --tax_scope prokaryota_broad --pfam_realign realign \\
         --output ${prefix} \\
         ${dbmem} \\
         $args
@@ -50,17 +46,17 @@ process EGGNOGMAPPER {
     END_VERSIONS
     """
 
-    stub:
-    def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
-    """
-    touch ${prefix}.emapper.annotations
-    touch ${prefix}.emapper.seed_orthologs
-    touch ${prefix}.emapper.hits
+    // stub:
+    // def args = task.ext.args ?: ''
+    // def prefix = task.ext.prefix ?: "${meta.id}"
+    // """
+    // touch ${prefix}.emapper.annotations
+    // touch ${prefix}.emapper.seed_orthologs
+    // touch ${prefix}.emapper.hits
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
-    END_VERSIONS
-    """
+    // cat <<-END_VERSIONS > versions.yml
+    // "${task.process}":
+    //     eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
+    // END_VERSIONS
+    // """
 }

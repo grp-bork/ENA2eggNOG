@@ -36,6 +36,7 @@ ch_multiqc_custom_methods_description = params.multiqc_methods_description ? fil
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
 include { INPUT_CHECK } from '../subworkflows/local/input_check'
+include { EMAPPER     } from '../subworkflows/local/emapper'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +50,7 @@ include { INPUT_CHECK } from '../subworkflows/local/input_check'
 include { FASTQC                      } from '../modules/nf-core/fastqc/main'
 include { MULTIQC                     } from '../modules/nf-core/multiqc/main'
 include { PRODIGAL                    } from '../modules/nf-core/prodigal/main'
-include { EGGNOGMAPPER as EMAPPER     } from '../modules/nf-core/eggnogmapper/main'
+// include { EGGNOGMAPPER as EMAPPER     } from '../modules/nf-core/eggnogmapper/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
 
 /*
@@ -64,6 +65,13 @@ def multiqc_report = []
 workflow EGGNOGMAPPER {
 
     ch_versions = Channel.empty()
+
+    // PARAMETER CHECK
+    if (params.eggnog_data_dir) {
+        ch_eggnog_data_dir = file(params.eggnog_data_dir, checkIfExists: true)
+    } else {
+        ch_eggnog_data_dir = Channel.empty()
+    }
 
     //
     // SUBWORKFLOW: Read in samplesheet, validate and stage input files
@@ -88,10 +96,11 @@ workflow EGGNOGMAPPER {
     //
     // MODULE: Run Eggnog mapper
     //
-    // EMAPPER(
-    //     PRODIGAL.out.gene_annotations,
-        
-    // )
+    EMAPPER(
+        PRODIGAL.out.amino_acid_fasta,
+        params.eggnog_data_dir
+    )
+    ch_versions = ch_versions.mix(EMAPPER.out.versions)
 
     //
     // MODULE: Run FastQC
