@@ -31,8 +31,7 @@ process PRODIGAL {
         -d "${prefix}.fna" \\
         -o "${prefix}.${output_format}" \\
         -a "${prefix}.faa" \\
-        -s "${prefix}_all.txt" \\
-        -p meta
+        -s "${prefix}_all.txt"
 
     pigz -nm ${prefix}*
 
