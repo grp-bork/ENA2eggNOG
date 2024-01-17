@@ -1,0 +1,2 @@
+id,group,assembler,fasta
+test_fna,0,MEGAHIT,/homes/smrobbani/data/test_queries.fna.gz
