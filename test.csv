@@ -1,2 +1,3 @@
 id,group,assembler,fasta
-test_fna,0,MEGAHIT,/homes/smrobbani/data/test_queries.fna.gz
+test_fna_1,0,MEGAHIT,/homes/smrobbani/data/test_queries.fna.gz
+test_fna_2,0,MEGAHIT,/homes/smrobbani/data/test_queries_2.fna.gz
