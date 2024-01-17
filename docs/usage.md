@@ -8,6 +8,17 @@
 
 <!-- TODO nf-core: Add documentation about anything specific to running your pipeline. For general topics, please point to (and add to) the main nf-core website. -->
 
+Currently, the pipline runs prodigal and eggnog-mapper.
+
+The input is a csv file with the following structure:
+
+```console
+id,group,assembler,fasta
+<sample_name>,0,0,<genomes>.fna.gz
+```
+
+Only the first and last column matter. The first is the sample name and the last is the path toa gzipped fasta file (genome).
+
 ## Samplesheet input
 
 You will need to create a samplesheet with information about the samples you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row as shown in the examples below.
