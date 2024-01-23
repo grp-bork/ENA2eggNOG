@@ -49,8 +49,8 @@ include { EMAPPER     } from '../subworkflows/local/emapper'
 //
 include { FASTQC                      } from '../modules/nf-core/fastqc/main'
 include { MULTIQC                     } from '../modules/nf-core/multiqc/main'
+include { MEGAHIT                     } from '../modules/nf-core/megahit/main'
 include { PRODIGAL                    } from '../modules/nf-core/prodigal/main'
-// include { EGGNOGMAPPER as EMAPPER     } from '../modules/nf-core/eggnogmapper/main'
 include { CUSTOM_DUMPSOFTWAREVERSIONS } from '../modules/nf-core/custom/dumpsoftwareversions/main'
 
 ////////////////////////////////////////////////////
