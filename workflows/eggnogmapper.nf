@@ -36,6 +36,8 @@ ch_multiqc_custom_methods_description = params.multiqc_methods_description ? fil
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
 include { INPUT_CHECK } from '../subworkflows/local/input_check'
+include { PIPELINE_INITIALISATION } from '../subworkflows/local/nf_core_fetchngs_utils'
+include { SRA         } from '../subworkflows/local/fetchngs'
 include { EMAPPER     } from '../subworkflows/local/emapper'
 
 /*
@@ -83,37 +85,50 @@ workflow EGGNOGMAPPER {
     ch_versions = Channel.empty()
 
     //
-    // SUBWORKFLOW: Read in samplesheet, validate and stage input files
+    // SUBWORKFLOW: Run initialisation tasks
     //
-    INPUT_CHECK (
-        file(params.input)
-    )
-    ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
-    // TODO: OPTIONAL, you can use nf-validation plugin to create an input channel from the samplesheet with Channel.fromSamplesheet("input")
-    // See the documentation https://nextflow-io.github.io/nf-validation/samplesheets/fromSamplesheet/
-    // ! There is currently no tooling to help you write a sample sheet schema
+    PIPELINE_INITIALISATION ()
 
     //
-    // MODULE: Run Prodigal
+    // SUBWORKFLOW: Fetch ENA data
     //
-    PRODIGAL (
-        INPUT_CHECK.out.reads,
-        "gff"
+    SRA (
+        PIPELINE_INITIALISATION.out.ids
     )
-    ch_versions = ch_versions.mix(PRODIGAL.out.versions)
+    ch_versions = ch_versions.mix(SRA.out.versions)
 
-    //
-    // MODULE: Run Eggnog mapper
-    //
-    EMAPPER(
-        PRODIGAL.out.amino_acid_fasta,
-        params.eggnog_data_dir,
-        ch_db,
-        ch_proteins_dmnd,
-        ch_taxa_db,
-        ch_taxa_db_pkl
-    )
-    ch_versions = ch_versions.mix(EMAPPER.out.versions)
+    // //
+    // // SUBWORKFLOW: Read in samplesheet, validate and stage input files
+    // //
+    // INPUT_CHECK (
+    //     file(params.input)
+    // )
+    // ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
+    // // TODO: OPTIONAL, you can use nf-validation plugin to create an input channel from the samplesheet with Channel.fromSamplesheet("input")
+    // // See the documentation https://nextflow-io.github.io/nf-validation/samplesheets/fromSamplesheet/
+    // // ! There is currently no tooling to help you write a sample sheet schema
+
+    // //
+    // // MODULE: Run Prodigal
+    // //
+    // PRODIGAL (
+    //     INPUT_CHECK.out.reads,
+    //     "gff"
+    // )
+    // ch_versions = ch_versions.mix(PRODIGAL.out.versions)
+
+    // //
+    // // MODULE: Run Eggnog mapper
+    // //
+    // EMAPPER(
+    //     PRODIGAL.out.amino_acid_fasta,
+    //     params.eggnog_data_dir,
+    //     ch_db,
+    //     ch_proteins_dmnd,
+    //     ch_taxa_db,
+    //     ch_taxa_db_pkl
+    // )
+    // ch_versions = ch_versions.mix(EMAPPER.out.versions)
 
     //
     // MODULE: Run FastQC
