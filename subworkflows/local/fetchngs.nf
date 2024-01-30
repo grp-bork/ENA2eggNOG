@@ -141,7 +141,7 @@ workflow SRA {
     }
 
     emit:
-    fastq           = fastq_files
+    fastq           = SRA_FASTQ_FTP.out.fastq
     samplesheet     = SRA_MERGE_SAMPLESHEET.out.samplesheet
     mappings        = SRA_MERGE_SAMPLESHEET.out.mappings
     sample_mappings = ch_sample_mappings_yml
