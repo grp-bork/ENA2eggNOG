@@ -97,6 +97,15 @@ workflow EGGNOGMAPPER {
     )
     ch_versions = ch_versions.mix(SRA.out.versions)
 
+    //
+    // MODULE: Run megahit
+    //
+
+    MEGAHIT (
+        SRA.out.fastq
+    )
+    ch_versions = ch_versions.mix(MEGAHIT.out.versions)
+
     // //
     // // SUBWORKFLOW: Read in samplesheet, validate and stage input files
     // //
@@ -108,27 +117,27 @@ workflow EGGNOGMAPPER {
     // // See the documentation https://nextflow-io.github.io/nf-validation/samplesheets/fromSamplesheet/
     // // ! There is currently no tooling to help you write a sample sheet schema
 
-    // //
-    // // MODULE: Run Prodigal
-    // //
-    // PRODIGAL (
-    //     INPUT_CHECK.out.reads,
-    //     "gff"
-    // )
-    // ch_versions = ch_versions.mix(PRODIGAL.out.versions)
+    //
+    // MODULE: Run Prodigal
+    //
+    PRODIGAL (
+        MEGAHIT.out.contigs,
+        "gff"
+    )
+    ch_versions = ch_versions.mix(PRODIGAL.out.versions)
 
-    // //
-    // // MODULE: Run Eggnog mapper
-    // //
-    // EMAPPER(
-    //     PRODIGAL.out.amino_acid_fasta,
-    //     params.eggnog_data_dir,
-    //     ch_db,
-    //     ch_proteins_dmnd,
-    //     ch_taxa_db,
-    //     ch_taxa_db_pkl
-    // )
-    // ch_versions = ch_versions.mix(EMAPPER.out.versions)
+    //
+    // MODULE: Run Eggnog mapper
+    //
+    EMAPPER(
+        PRODIGAL.out.amino_acid_fasta,
+        params.eggnog_data_dir,
+        ch_db,
+        ch_proteins_dmnd,
+        ch_taxa_db,
+        ch_taxa_db_pkl
+    )
+    ch_versions = ch_versions.mix(EMAPPER.out.versions)
 
     //
     // MODULE: Run FastQC
