@@ -1,0 +1,14 @@
+Changes in module 'nf-core/prodigal'
+--- modules/nf-core/prodigal/main.nf
++++ modules/nf-core/prodigal/main.nf
+@@ -33,7 +33,7 @@
+         -a "${prefix}.faa" \\
+         -s "${prefix}_all.txt"
+ 
+-    pigz -nm ${prefix}*
++    pigz -nmf ${prefix}*
+ 
+     cat <<-END_VERSIONS > versions.yml
+     "${task.process}":
+
+************************************************************
