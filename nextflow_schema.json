@@ -259,7 +259,8 @@
                 "multiqc_methods_description": {
                     "type": "string",
                     "description": "Custom MultiQC yaml file containing HTML including a methods description.",
-                    "fa_icon": "fas fa-cog"
+                    "fa_icon": "fas fa-cog",
+                    "hidden": true
                 },
                 "validate_params": {
                     "type": "boolean",
@@ -311,5 +312,46 @@
         {
             "$ref": "#/definitions/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "input_type": {
+            "type": "string",
+            "default": "sra",
+            "hidden": true
+        },
+        "nf_core_pipeline": {
+            "type": "string",
+            "hidden": true
+        },
+        "nf_core_rnaseq_strandedness": {
+            "type": "string",
+            "default": "auto",
+            "hidden": true
+        },
+        "ena_metadata_fields": {
+            "type": "string",
+            "hidden": true
+        },
+        "sample_mapping_fields": {
+            "type": "string",
+            "default": "experiment_accession,run_accession,sample_accession,experiment_alias,run_alias,sample_alias,experiment_title,sample_title,sample_description",
+            "hidden": true
+        },
+        "synapse_config": {
+            "type": "string",
+            "hidden": true
+        },
+        "force_sratools_download": {
+            "type": "string",
+            "hidden": true
+        },
+        "skip_fastq_download": {
+            "type": "string",
+            "hidden": true
+        },
+        "dbgap_key": {
+            "type": "string",
+            "hidden": true
+        }
+    }
 }
