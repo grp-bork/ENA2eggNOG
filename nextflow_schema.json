@@ -342,11 +342,11 @@
             "hidden": true
         },
         "force_sratools_download": {
-            "type": "string",
+            "type": "boolean",
             "hidden": true
         },
         "skip_fastq_download": {
-            "type": "string",
+            "type": "boolean",
             "hidden": true
         },
         "dbgap_key": {
