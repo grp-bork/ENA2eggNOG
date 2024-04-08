@@ -1,16 +1,3 @@
-# ![nf-core/eggnogmapper](docs/images/nf-core-eggnogmapper_logo_light.png#gh-light-mode-only) ![nf-core/eggnogmapper](docs/images/nf-core-eggnogmapper_logo_dark.png#gh-dark-mode-only)
-
-[![GitHub Actions CI Status](https://github.com/nf-core/eggnogmapper/workflows/nf-core%20CI/badge.svg)](https://github.com/nf-core/eggnogmapper/actions?query=workflow%3A%22nf-core+CI%22)
-[![GitHub Actions Linting Status](https://github.com/nf-core/eggnogmapper/workflows/nf-core%20linting/badge.svg)](https://github.com/nf-core/eggnogmapper/actions?query=workflow%3A%22nf-core+linting%22)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/eggnogmapper/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
-
-[![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A523.04.0-23aa62.svg)](https://www.nextflow.io/)
-[![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
-[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
-[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
-[![Launch on Nextflow Tower](https://img.shields.io/badge/Launch%20%F0%9F%9A%80-Nextflow%20Tower-%234256e7)](https://tower.nf/launch?pipeline=https://github.com/nf-core/eggnogmapper)
-
-[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23eggnogmapper-4A154B?labelColor=000000&logo=slack)](https://nfcore.slack.com/channels/eggnogmapper)[![Follow on Twitter](http://img.shields.io/badge/twitter-%40nf__core-1DA1F2?labelColor=000000&logo=twitter)](https://twitter.com/nf_core)[![Follow on Mastodon](https://img.shields.io/badge/mastodon-nf__core-6364ff?labelColor=FFFFFF&logo=mastodon)](https://mstdn.science/@nf_core)[![Watch on YouTube](http://img.shields.io/badge/youtube-nf--core-FF0000?labelColor=000000&logo=youtube)](https://www.youtube.com/c/nf-core)
-
 ## Introduction
 
 **Eggnogmapper** is a bioinformatics pipeline for fast functional annotation of novel sequences. It uses precomputed orthologous groups and phylogenies from the [eggNOG database](http://eggnog5.embl.de) to transfer functional information from fine-grained orthologs only.
@@ -22,19 +9,10 @@ The use of orthology predictions for functional annotation permits a higher prec
 Benchmarks comparing different eggNOG-mapper options against BLAST and InterProScan can be found [here](https://github.com/jhcepas/emapper-benchmark/blob/master/benchmark_analysis.ipynb).
 
 
-
-<!-- TODO nf-core:
-   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
-   major pipeline sections and the types of output it produces. You're giving an overview to someone new
-   to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
--->
-
-<!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
-     workflows use the "tube map" design for that. See https://nf-co.re/docs/contributing/design_guidelines#examples for examples.   -->
-<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
-
-1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
-2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
+1. Download data from ENA/SRA ([`fetchngs`](https://github.com/nf-core/fetchngs))
+2. Run assembly ([`MEGAHIT`](https://github.com/voutcn/megahit))
+3. Predict genes([`Prodaigal`](https://github.com/hyattpd/Prodigal))
+2. Annotate genes ([`eggnog-mapper`](https://github.com/eggnogdb/eggnog-mapper ))
 
 ## Usage
 
@@ -44,30 +22,25 @@ to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/i
 with `-profile test` before running the workflow on actual data.
 :::
 
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
+First, prepare a csv file with a list of ENA accession IDs that looks as follows:
 
-First, prepare a samplesheet with your input data that looks as follows:
-
-`samplesheet.csv`:
+`ids.csv`:
 
 ```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
+PRJEB6102
+SRR9984183
+SRR13191702
 ```
 
-Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
+Each can be a project ID or a run ID.
 
--->
 
 Now, you can run the pipeline using:
-
-<!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
 nextflow run eggnogmapper \
    -profile <docker/singularity/.../institute> \
-   --input samplesheet.csv \
+   --input ids.csv \
    --outdir <OUTDIR>
 ```
 
@@ -91,20 +64,26 @@ nf-core/eggnogmapper was originally written by Mahdi Robbani.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
-<!-- TODO nf-core: If applicable, make list of people who have also contributed -->
+- Harshil Patel
+- Maxime U Garcia
+- James A. Fellows Yates
+- Gregor Sturm
+- Evangelos Karatzas
 
 ## Contributions and Support
 
 If you would like to contribute to this pipeline, please see the [contributing guidelines](.github/CONTRIBUTING.md).
-
-For further information or help, don't hesitate to get in touch on the [Slack `#eggnogmapper` channel](https://nfcore.slack.com/channels/eggnogmapper) (you can join with [this invite](https://nf-co.re/join/slack)).
 
 ## Citations
 
 <!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
 <!-- If you use  nf-core/eggnogmapper for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
 
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
+Tools used:
+- Li D, Liu CM, Luo R, Sadakane K, Lam TW. MEGAHIT: an ultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics. 2015 May 15;31(10):1674-6. doi: 10.1093/bioinformatics/btv033. Epub 2015 Jan 20. PMID: 25609793.
+- Hyatt, D., Chen, GL., LoCascio, P.F. et al. Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics 11, 119 (2010). https://doi.org/10.1186/1471-2105-11-119
+- Carlos P. Cantalapiedra, Ana Hernandez-Plaza, Ivica Letunic, Peer Bork, and Jaime Huerta-Cepas. 2021
+Molecular Biology and Evolution, msab293, https://doi.org/10.1093/molbev/msab293
 
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
