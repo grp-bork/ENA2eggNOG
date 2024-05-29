@@ -11,8 +11,8 @@ Benchmarks comparing different eggNOG-mapper options against BLAST and InterProS
 
 1. Download data from ENA/SRA ([`fetchngs`](https://github.com/nf-core/fetchngs))
 2. Run assembly ([`MEGAHIT`](https://github.com/voutcn/megahit))
-3. Predict genes([`Prodaigal`](https://github.com/hyattpd/Prodigal))
-2. Annotate genes ([`eggnog-mapper`](https://github.com/eggnogdb/eggnog-mapper ))
+3. Predict genes([`Prodigal`](https://github.com/hyattpd/Prodigal))
+4. Annotate genes ([`eggnog-mapper`](https://github.com/eggnogdb/eggnog-mapper ))
 
 ## Usage
 
@@ -43,20 +43,6 @@ nextflow run eggnogmapper \
    --input ids.csv \
    --outdir <OUTDIR>
 ```
-
-:::warning
-Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those
-provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_;
-see [docs](https://nf-co.re/usage/configuration#custom-configuration-files).
-:::
-
-For more details and further functionality, please refer to the [usage documentation](https://nf-co.re/eggnogmapper/usage) and the [parameter documentation](https://nf-co.re/eggnogmapper/parameters).
-
-## Pipeline output
-
-To see the results of an example test run with a full size dataset refer to the [results](https://nf-co.re/eggnogmapper/results) tab on the nf-core website pipeline page.
-For more details about the output files and reports, please refer to the
-[output documentation](https://nf-co.re/eggnogmapper/output).
 
 ## Credits
 
