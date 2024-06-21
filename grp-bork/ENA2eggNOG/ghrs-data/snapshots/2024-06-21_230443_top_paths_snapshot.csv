@@ -1,0 +1,11 @@
+url_path,views_total,views_unique
+/grp-bork/ENA2eggNOG,9,2
+/mahdi-robbani/eggnog-mapper/commits/master,5,1
+/grp-bork/ENA2eggNOG/blob/master/.github/CONTRIBUTING.md,3,1
+/grp-bork/ENA2eggNOG/blob/master/nextflow_schema.json,3,1
+/mahdi-robbani/eggnog-mapper/blob/master/nextflow_schema.json,3,1
+/mahdi-robbani/eggnog-mapper,2,2
+/grp-bork/ENA2eggNOG/actions/workflows/github-repo-stats.yml,2,1
+/grp-bork/ENA2eggNOG/blob/github-repo-stats/grp-bork/ENA2eggNOG/ghrs-data/views_clones_aggregate.csv,2,1
+/grp-bork/ENA2eggNOG/tree/github-repo-stats/grp-bork/ENA2eggNOG,2,1
+/grp-bork/ENA2eggNOG/tree/github-repo-stats/grp-bork/ENA2eggNOG/ghrs-data,2,1
