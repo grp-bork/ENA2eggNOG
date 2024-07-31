@@ -61,7 +61,8 @@ The use of orthology predictions for functional annotation permits a higher prec
 Benchmarks comparing different eggNOG-mapper options against BLAST and InterProScan can be found [here](https://github.com/jhcepas/emapper-benchmark/blob/master/benchmark_analysis.ipynb).
 
 #### Citation
-This workflow: badge tbd.
+This workflow: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13143269.svg)](https://doi.org/10.5281/zenodo.13143269)
+
 
 Also cite:
 ```
