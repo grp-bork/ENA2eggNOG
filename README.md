@@ -73,12 +73,14 @@ Hyatt D, Chen GL, Locascio PF, Land ML, Larimer FW, Hauser LJ. Prodigal: prokary
 An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](https://raw.githubusercontent.com/grp-bork/ENA2eggNOG/master/CITATIONS.md) file.
 
 ---
-# Usage
+# Overview
 1. Download data from ENA/SRA ([`fetchngs`](https://github.com/nf-core/fetchngs))
 2. Run assembly ([`MEGAHIT`](https://github.com/voutcn/megahit))
 3. Predict genes([`Prodigal`](https://github.com/hyattpd/Prodigal))
 4. Annotate genes ([`eggnog-mapper`](https://github.com/eggnogdb/eggnog-mapper ))
 
+---
+# Usage
 ## Cloud-based Workflow Manager (CloWM)
 This workflow will be available on the CloWM platform (coming soon).
 
