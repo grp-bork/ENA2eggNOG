@@ -7,7 +7,7 @@
     "email"
   ],
   "exampleParameters": {
-    "input": "s3://example-data-ena2eggnog/ids.csv"
+    "input": "s3://workflow-exampledata/ena2eggnog/ids.csv"
   },
   "dois": [
     "10.5281/zenodo.13143268",
