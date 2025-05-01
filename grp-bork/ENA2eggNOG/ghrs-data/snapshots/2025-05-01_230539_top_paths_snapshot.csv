@@ -1,0 +1,9 @@
+url_path,views_total,views_unique
+/grp-bork/ENA2eggNOG,3,2
+/grp-bork/ENA2eggNOG/blob/c90da213410c58ea6e6de5857fdce6db6cc38f84/modules/nf-core/eggnogmapper/main.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/main.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/nextflow.config,1,1
+/grp-bork/ENA2eggNOG/blob/master/workflows/eggnogmapper.nf,1,1
+/grp-bork/ENA2eggNOG/tree/master/modules,1,1
+/grp-bork/ENA2eggNOG/tree/master/subworkflows,1,1
+/grp-bork/ENA2eggNOG/tree/master/workflows,1,1
