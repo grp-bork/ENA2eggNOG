@@ -1,0 +1,11 @@
+url_path,views_total,views_unique
+/grp-bork/ENA2eggNOG,4,4
+/grp-bork/ENA2eggNOG/tree/master/modules,2,1
+/grp-bork/ENA2eggNOG/tree/master/modules/nf-core,2,1
+/grp-bork/ENA2eggNOG/blob/master/main.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/subworkflows/local/emapper.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/subworkflows/local/fetchngs.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/subworkflows/local/nf_core_fetchngs_utils.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/subworkflows/nf-core/utils_nextflow_pipeline/main.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/subworkflows/nf-core/utils_nfcore_pipeline/main.nf,1,1
+/grp-bork/ENA2eggNOG/tree/master/subworkflows,1,1
