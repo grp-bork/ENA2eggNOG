@@ -1,0 +1,11 @@
+url_path,views_total,views_unique
+/grp-bork/ENA2eggNOG,3,2
+/grp-bork/ENA2eggNOG/tree/c90da213410c58ea6e6de5857fdce6db6cc38f84,2,1
+/grp-bork/ENA2eggNOG/blob/master/main.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/modules/nf-core/eggnogmapper/main.nf,1,1
+/grp-bork/ENA2eggNOG/tree/master,1,1
+/grp-bork/ENA2eggNOG/tree/master/assets,1,1
+/grp-bork/ENA2eggNOG/tree/master/.github,1,1
+/grp-bork/ENA2eggNOG/tree/master/.github/ISSUE_TEMPLATE,1,1
+/grp-bork/ENA2eggNOG/tree/master/.github/workflows,1,1
+/grp-bork/ENA2eggNOG/tree/master/modules,1,1
