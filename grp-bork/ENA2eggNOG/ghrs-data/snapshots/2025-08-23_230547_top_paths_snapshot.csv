@@ -1,0 +1,9 @@
+url_path,views_total,views_unique
+/grp-bork/ENA2eggNOG,2,2
+/grp-bork/ENA2eggNOG/blob/master/lib/WorkflowEggnogmapper.groovy,1,1
+/grp-bork/ENA2eggNOG/blob/master/main.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/modules/nf-core/eggnogmapper/main.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/subworkflows/local/emapper.nf,1,1
+/grp-bork/ENA2eggNOG/blob/master/workflows/eggnogmapper.nf,1,1
+/grp-bork/ENA2eggNOG/tree/master/lib,1,1
+/grp-bork/ENA2eggNOG/tree/master/modules,1,1
