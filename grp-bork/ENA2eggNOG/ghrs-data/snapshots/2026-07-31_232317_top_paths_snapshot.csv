@@ -1,0 +1,5 @@
+url_path,views_total,views_unique
+/grp-bork/ENA2eggNOG,5,5
+/grp-bork/ENA2eggNOG/blob/master/modules/nf-core/custom/dumpsoftwareversions/meta.yml,1,1
+/grp-bork/ENA2eggNOG/blob/master/modules/nf-core/custom/sratoolsncbisettings/meta.yml,1,1
+/grp-bork/ENA2eggNOG/blob/master/modules/nf-core/megahit/environment.yml,1,1
